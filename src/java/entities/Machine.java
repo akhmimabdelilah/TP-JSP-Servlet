@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 
@@ -29,13 +30,31 @@ public class Machine implements Serializable {
     private String marque;
     private double prix;
 
+    @ManyToOne
+    private Salle salle;
+
     public Machine() {
     }
 
-    public Machine(String ref, String marque, double prix) {
+//    public Machine(String ref, String marque, double prix) {
+//        this.ref = ref;
+//        this.marque = marque;
+//        this.prix = prix;
+//    }
+
+    public Machine(String ref, String marque, double prix, Salle salle) {
         this.ref = ref;
         this.marque = marque;
         this.prix = prix;
+        this.salle = salle;
+    }
+
+    public Machine(int id, String ref, String marque, double prix, Salle salle) {
+        this.id = id;
+        this.ref = ref;
+        this.marque = marque;
+        this.prix = prix;
+        this.salle = salle;
     }
 
     public int getId() {
@@ -58,6 +77,10 @@ public class Machine implements Serializable {
         this.prix = prix;
     }
 
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
+
     public String getRef() {
         return ref;
     }
@@ -70,9 +93,13 @@ public class Machine implements Serializable {
         return prix;
     }
 
+    public Salle getSalle() {
+        return salle;
+    }
+
     @Override
     public String toString() {
-        return "Machine{" + "id=" + id + ", ref=" + ref + ", marque=" + marque + ", prix=" + prix + '}';
+        return "Machine{" + "id=" + id + ", ref=" + ref + ", marque=" + marque + ", prix=" + prix + ", salle=" + salle + '}';
     }
 
 }

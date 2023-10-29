@@ -5,25 +5,23 @@
  */
 package controller;
 
-import entities.Machine;
 import entities.Salle;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.MachineService;
 import service.SalleService;
 
 /**
  *
- * @author akhmim
+ * @author Ismail
  */
-@WebServlet(name = "MachineController", urlPatterns = {"/MachineController"})
-public class MachineController extends HttpServlet {
+@WebServlet(name = "SalleController", urlPatterns = {"/SalleController"})
+public class SalleController extends HttpServlet {
 
-    MachineService ms = new MachineService();
     SalleService ss = new SalleService();
 
     /**
@@ -41,38 +39,38 @@ public class MachineController extends HttpServlet {
             switch (request.getParameter("op")) {
                 case "delete": {
                     int id = Integer.parseInt(request.getParameter("id"));
-                    ms.delete(ms.findById(id));
+                    ss.delete(ss.findById(id));
+                    response.sendRedirect("Salles.jsp");
                     break;
                 }
                 case "update": {
                     int id = Integer.parseInt(request.getParameter("id"));
-                    String ref = request.getParameter("ref");
-                    String marque = request.getParameter("marque");
-                    double prix = Double.parseDouble(request.getParameter("prix"));
-                    Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
-                    Machine updatedMachine = ms.findById(id);
-                    updatedMachine.setId(id);
-                    updatedMachine.setRef(ref);
-                    updatedMachine.setMarque(marque);
-                    updatedMachine.setPrix(prix);
-                    updatedMachine.setSalle(salle);
-                    ms.update(updatedMachine);
+                    Salle updatedSalle = ss.findById(id);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Salles.jsp");
+                    request.setAttribute("salle", updatedSalle);
+                    dispatcher.forward(request, response);
                     break;
                 }
                 default: {
-                    response.sendRedirect("/pages/Machines.jsp");
+                    response.sendRedirect("/pages/Salles.jsp");
                 }
             }
-        } else {
-            String ref = request.getParameter("ref");
-            String marque = request.getParameter("marque");
-            double prix = Double.parseDouble(request.getParameter("prix"));
-//            Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
-            Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
+        } else if (request.getParameter("op").equals("Ajouter")) {
+            String code = request.getParameter("code");
+            ss.create(new Salle(code));
+//            Salle newSalle = new Salle();
+//            newSalle.setCode(code);
+//            ss.create(newSalle);
 
-            ms.create(new Machine(ref, marque, prix, salle));
+        } else if (request.getParameter("op").equals("Modifier")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            String code = request.getParameter("code");
+            Salle s = ss.findById(id);
+            s.setCode(code);
+            ss.update(s);
         }
-        response.sendRedirect("/pages/Machines.jsp");
+        response.sendRedirect("Salles.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,7 +109,7 @@ public class MachineController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "MachineController";
+        return "SalleController";
     }// </editor-fold>
 
 }

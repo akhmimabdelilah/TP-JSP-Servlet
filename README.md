@@ -1,8 +1,13 @@
 ## Projet Java de Gestion de Salles et de Machines
 
-- **Ajoute d'une machine :**
-![web](./img/web.jpeg)
+- **Gestion des machines :**
+![machine](./img/machine.jpeg)
 
+- **Gestion des salles :**
+![machine](./img/machine.jpeg)
+
+- **Recherche des machines par salle :**
+![search](./img/search.jpeg)
   
 ## les fonctionnalités implémentées
 1. les operations CRUD pour les machines
@@ -15,4 +20,6 @@
 + JSP
 
 
-"# TP-JSP-Servlet" 
+"# TP-JSP-Servlet"
+
+#### Credit by Akhmim Abdelilah"

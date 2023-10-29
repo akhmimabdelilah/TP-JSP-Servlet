@@ -5,26 +5,20 @@
  */
 package controller;
 
-import entities.Machine;
-import entities.Salle;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.MachineService;
-import service.SalleService;
 
 /**
  *
- * @author akhmim
+ * @author Ismail
  */
-@WebServlet(name = "MachineController", urlPatterns = {"/MachineController"})
-public class MachineController extends HttpServlet {
-
-    MachineService ms = new MachineService();
-    SalleService ss = new SalleService();
+@WebServlet(name = "RechercheController", urlPatterns = {"/RechercheController"})
+public class RechercheController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,42 +31,14 @@ public class MachineController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("op") != null) {
-            switch (request.getParameter("op")) {
-                case "delete": {
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    ms.delete(ms.findById(id));
-                    break;
-                }
-                case "update": {
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    String ref = request.getParameter("ref");
-                    String marque = request.getParameter("marque");
-                    double prix = Double.parseDouble(request.getParameter("prix"));
-                    Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
-                    Machine updatedMachine = ms.findById(id);
-                    updatedMachine.setId(id);
-                    updatedMachine.setRef(ref);
-                    updatedMachine.setMarque(marque);
-                    updatedMachine.setPrix(prix);
-                    updatedMachine.setSalle(salle);
-                    ms.update(updatedMachine);
-                    break;
-                }
-                default: {
-                    response.sendRedirect("/pages/Machines.jsp");
-                }
-            }
-        } else {
-            String ref = request.getParameter("ref");
-            String marque = request.getParameter("marque");
-            double prix = Double.parseDouble(request.getParameter("prix"));
-//            Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
-            Salle salle = ss.findById(Integer.parseInt(request.getParameter("salleId")));
 
-            ms.create(new Machine(ref, marque, prix, salle));
-        }
-        response.sendRedirect("/pages/Machines.jsp");
+//        int salleId = Integer.parseInt(request.getParameter("salleId"));
+        String salleId = request.getParameter("salle_id");
+        request.setAttribute("salle_id", salleId);
+//        RequestDispatcher rd = request.getRequestDispatcher("Recherche.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/pages/Recherche.jsp");
+        rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -111,7 +77,7 @@ public class MachineController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "MachineController";
+        return "RechercheController";
     }// </editor-fold>
 
 }

@@ -1,0 +1,137 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 24, 2023, 9:24:06 PM
+    Author     : akhmim
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+body {
+    background-color: #0F001A !important;
+    overflow-x: hidden;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    height: 100%;
+    width: 100%;
+}
+
+.flex-box {
+    display: flex;
+    align-items:center; 
+    justify-content: center;
+}
+
+.app {
+    padding: 20px 30px;
+    flex-direction: column;
+    text-align: center;
+}
+.home {
+    height: 90vh;
+}
+
+h1 {
+    padding: 50px 0;
+}
+
+.btn {
+    flex-direction: column;
+}
+
+a {
+    padding: 15px;
+    margin: 10px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: #12012D;
+}
+a:hover {
+    color: #12012D;
+    background-color: #4B0377;
+}
+
+/*navbar*/
+.nav{
+    width: 100%;
+    display: flex;
+    align-items:center; 
+    justify-content: between;
+    padding: 5px 10px;
+}
+.logo{
+    flex:1;
+}
+
+.menu{
+    display: flex;
+    align-items:left; 
+    justify-content: between;
+}
+
+/*forms*/
+fieldset{
+    font-size: 14px;
+    width: 100%;
+    margin: 10px;
+    padding: 20px 30px;
+    background-color: #4B0377;
+}
+
+label {
+    width: 10vw;
+}
+
+input{
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: #12012D;
+    width: 100px;
+}
+input:hover {
+    color: white;
+    background-color: #4B0377;
+}
+
+select{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+
+th,td {
+    padding: 10px 5px;
+    margin: 10px;
+}
+
+td>a{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.items{
+    display: grid; 
+    grid-column-start: 1;
+    grid-column-end: 3;
+    gap: 50px;
+}
