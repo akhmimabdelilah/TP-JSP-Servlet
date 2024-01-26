@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author YASSINE
+ * @author akhmim
  */
     public interface IDao <T> {
     boolean create(T o);

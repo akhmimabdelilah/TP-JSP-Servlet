@@ -17,7 +17,7 @@ import util.HibernateUtil;
 
 /**
  *
- * @author YASSINE
+ * @author akhmim
  */
 public class MachineService  implements IDao<Machine>{
 

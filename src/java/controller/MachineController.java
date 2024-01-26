@@ -17,7 +17,7 @@ import services.MachineService;
 
 /**
  *
- * @author YASSINE
+ * @author akhmim
  */
 @WebServlet(name = "MachineController", urlPatterns = {"/MachineController"})
 public class MachineController extends HttpServlet {
